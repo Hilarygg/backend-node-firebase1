@@ -28,7 +28,7 @@ export default class UserService {
     }
 
     async create(userData) {
-        const { nombre, apPaterno, apMaterno, usuario, password } = userData
+        const { nombre, apaterno, amaterno, usuario, password } = userData
 
         // Verificar que sea un usuario único
         const uniqueUser = await this.userRepository.findByUser(usuario)
@@ -37,7 +37,7 @@ export default class UserService {
         }
 
         // Verificar si no hay otro registro con el mismo nombre
-        const uniqueFullname = await this.userRepository.findByFullname(nombre, apPaterno, apMaterno)
+        const uniqueFullname = await this.userRepository.findByFullname(nombre, apaterno, amaterno)
         if(uniqueFullname) {
             throw { message: 'Ya existe un usuario con el mismo nombre completo', statusCode: 400 }
         }
@@ -84,7 +84,7 @@ export default class UserService {
         }
 
         const existingToken = await this.userRepository.getSessionToken(user.id)
-        console.log('Token: ', existingToken);
+        console.log(existingToken);
         if(existingToken) {
             throw { message: 'Ya hay un sesión activa', statusCode: 401 }
         }

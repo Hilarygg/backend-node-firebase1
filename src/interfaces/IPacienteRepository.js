@@ -1,11 +1,11 @@
-export default class IUserRepository {
+export default class IPacienteRepository {
     /*
-    Crear Usuario
-    @partam {onjeto} - Datos del Usuario
-    @return {Promise<Objeto>} - Usuario Creado
+    Crear Paciente
+    @partam {onjeto} - Datos del Paciente
+    @return {Promise<Objeto>} - Paciente Creado
     */
 
-    create(user) {
+    create(paciente) {
         throw new Error('Metodo no implementado')
     }
     update(id,  updateData) {
@@ -17,12 +17,10 @@ export default class IUserRepository {
     getAll() {
         throw new Error('Metodo no implementado')
     }
-    findByFullname(nombre, apaterno, amaterno) {
+    findByName(fullName) {
         throw new Error('Metodo no implementado')
     }
-    findByRol(rol) {
-        throw new Error('Metodo no implementado')
-    }
+
     getById(id) {
         throw new Error('Metodo no implementado')
     }

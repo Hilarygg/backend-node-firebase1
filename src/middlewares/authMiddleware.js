@@ -9,20 +9,18 @@ const authMiddleware = async (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1]
-
     const userRepository = new UserRepository()
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
         const existingToken = await userRepository.getSessionToken(decoded.id)
         if(existingToken !== token || await TokenService.isTokenRevoked(token)) {
-            throw { message: 'Token invalido', statusCode: 401 }
+            throw { message: 'Token Inválido', statusCode: 401 }
         }
         req.user = decoded
         next()
     } catch (error) {
-        res.status(403).json({ message: 'token invalido' })
+        res.status(403).json({ message: 'token Inválido' })
     }
 }
 
